@@ -77,8 +77,8 @@ export default {
       if (this.driver) {
         const {latitude: driLat, longitude: driLng} = this.driver.geolocation;
 
-        const lat = latitude > driLat ? ((latitude - driLat) + driLat) : ((driLat - latitude) + latitude);
-        const lng = longitude > driLng ? ((longitude - driLng) + driLng) : ((driLng - longitude) + longitude);
+        const lat = latitude > driLat ? ((latitude - driLat) / 2 + driLat) : ((driLat - latitude) / 2 + latitude);
+        const lng = longitude > driLng ? ((longitude - driLng) / 2 + driLng) : ((driLng - longitude) / 2 + longitude);
 
         return {lat, lng};
       }
