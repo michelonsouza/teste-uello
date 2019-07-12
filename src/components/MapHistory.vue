@@ -22,7 +22,7 @@ export default {
   props: {
     driver: {
       type: Object,
-      default: {},
+      default: () => {},
     },
     address: {
       type: Object,
@@ -31,8 +31,8 @@ export default {
   },
   data() {
     return {
-      center: {}
-    }
+      center: {},
+    };
   },
   beforeMount() {
     this.getPosition();
@@ -44,12 +44,12 @@ export default {
           this.center = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          }
-        })
+          };
+        });
       }
 
       return null;
-    }
+    },
   },
   computed: {
     markers() {
@@ -58,7 +58,7 @@ export default {
 
       if (this.driver) {
         const { latitude: lat, longitude: lng } = this.driver.geolocation;
-        dmark = {icon: `${process.env.VUE_APP_HOST}/img/caminh-o.svg`, position: {lat, lng} };
+        dmark = { icon: `${process.env.VUE_APP_HOST}/img/caminh-o.svg`, position: { lat, lng } };
         markersArr.push(dmark);
       }
 
@@ -72,20 +72,8 @@ export default {
 
       return markersArr;
     },
-    // center() {
-    //   const { latitude: latadd, longitude: lngadd } = this.address.geolocation;
-    //   if (this.driver) {
-    //     const { latitude, longitude } = this.driver.geolocation;
-    //     const lat = latadd > latitude ? ((latadd - latitude) + latitude) : ((latitude - latadd) / 2 + latadd);
-    //     const lng = lngadd > latitude ? ((lngadd - longitude) + longitude) : ((longitude - lngadd) / 2 + lngadd);
-
-    //     return { lat, lng };
-    //   } else {
-    //     return {lat: latadd, lng: lngadd};
-    //   }
-    // }
-  }
-}
+  },
+};
 </script>
 
 <style>

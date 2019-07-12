@@ -9,7 +9,8 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto d-flex align-items-center justify-content-center flex-row">
-          <span class="app_uello__circle"></span><h5 class="app_uello__client-name text-white text-uppercase">{{name}}</h5>
+          <span class="app_uello__circle"></span>
+          <h5 class="app_uello__client-name text-white text-uppercase">{{name}}</h5>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -22,10 +23,10 @@ export default {
   props: {
     name: {
       type: String,
-      default: () => 'Name'
-    }
-  }
-}
+      default: () => 'Name',
+    },
+  },
+};
 </script>
 
 <style lang="scss">

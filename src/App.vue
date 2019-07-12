@@ -29,12 +29,12 @@ export default {
   },
   methods: {
     async getData() {
-      const {data} = await axios.get('/api.json');
+      const { data } = await axios.get('/api.json');
       const index = Math.floor(Math.random() * (4 - 0) + 0);
       this.request = data[index];
       console.log(data);
     },
-  }
+  },
 };
 </script>
 
@@ -44,4 +44,3 @@ export default {
   height: 28px;
 }
 </style>
-

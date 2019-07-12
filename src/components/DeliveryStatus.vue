@@ -31,21 +31,21 @@
 </template>
 
 <script>
-import TruckIcon from '@/assets/img/truck.svg'
-import GiftIcon from '@/assets/img/gift-2.svg'
+import TruckIcon from '@/assets/img/truck.svg';
+import GiftIcon from '@/assets/img/gift-2.svg';
 
 export default {
   props: {
     stage: {
       type: Number,
-      default: () => 1
+      default: () => 1,
     },
   },
   components: {
     TruckIcon,
-    GiftIcon
-  }
-}
+    GiftIcon,
+  },
+};
 </script>
 
 <style lang="scss">

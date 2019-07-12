@@ -21,7 +21,9 @@
         <b-col cols="12" md="6" lg="4" class="d-flex flex-row flex-md-column">
           <ul>
             <li>
-               <p class="text-muted font-weight-bold mb-0"><TruckIcon class="status-icon"/> Status</p>
+              <p class="text-muted font-weight-bold mb-0">
+                 <TruckIcon class="status-icon"/> Status
+              </p>
                <ul>
                  <li><h3 class="font-weight-bold info">{{infos.status}}</h3></li>
                </ul>
@@ -89,11 +91,21 @@
           <b-row class="pt-3 pt-md-0">
             <b-col>
               <p class="text-muted font-weight-bold">Data</p>
-              <p class="text-muted mb-1" v-for="(dateInfo, index) in history" :key="index">{{dateInfo.date}}</p>
+              <p
+                class="text-muted mb-1"
+                v-for="(dateInfo, index) in history"
+                :key="index">
+                {{dateInfo.date}}
+              </p>
             </b-col>
             <b-col>
               <p class="text-muted font-weight-bold">Detalhes</p>
-              <p class="text-muted mb-1" v-for="(descInfo, index) in history" :key="index">{{descInfo.description}}</p>
+              <p
+                class="text-muted mb-1"
+                v-for="(descInfo, index) in history"
+                :key="index">
+                {{descInfo.description}}
+              </p>
             </b-col>
           </b-row>
         </b-col>
@@ -119,7 +131,7 @@ export default {
   data() {
     return {
       option: {
-        'Solicitação': 1,
+        Solicitação: 1,
         'Aguardando Coleta': 2,
         'Motorista em trânsito': 3,
         'Pedido coletado': 4,
@@ -133,12 +145,12 @@ export default {
   },
   computed: {
     stage() {
-      return this.option[this.infos.status]
+      return this.option[this.infos.status];
     },
     history() {
-      return this.infos.history.map(history => {
+      return this.infos.history.map((history) => {
         const date = moment(history.date).format('YYYY/MM/DD hh:mm');
-        return { ...history, date }
+        return { ...history, date };
       });
     },
     coleted() {
@@ -146,8 +158,8 @@ export default {
       const lastState = history[history.length - 1];
 
       return lastState.description === 'Pedido coletado' ? moment(lastState.date).format('YYYY/MM/DD - hh:mm') : 'Informação não disponível';
-    }
-  }
+    },
+  },
 };
 </script>
 
