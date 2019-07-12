@@ -9,7 +9,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto d-flex align-items-center justify-content-center flex-row">
-          <span class="app_uello__circle"></span><h5 class="app_uello__client-name text-white text-uppercase">Michelon Souza</h5>
+          <span class="app_uello__circle"></span><h5 class="app_uello__client-name text-white text-uppercase">{{name}}</h5>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -18,7 +18,13 @@
 
 <script>
 export default {
-
+  name: 'app-header',
+  props: {
+    name: {
+      type: String,
+      default: () => 'Name'
+    }
+  }
 }
 </script>
 
@@ -42,6 +48,7 @@ export default {
   }
   .app_uello__client-name {
     margin: 0;
+    font-weight: 400;
   }
 }
 </style>

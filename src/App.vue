@@ -1,21 +1,39 @@
 <template>
   <div id="app">
-    <app-header />
+    <app-header :name="request.name"  />
     <b-container class="mt-5">
-      <info-list />
+      <info-list :infos="request" />
     </b-container>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 import Header from './components/Header.vue';
 import InfoList from './components/InfoList.vue';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      request: {},
+    };
+  },
   components: {
     appHeader: Header,
     InfoList,
   },
+  created() {
+    this.getData();
+  },
+  methods: {
+    async getData() {
+      const {data} = await axios.get('/api.json');
+      const index = Math.floor(Math.random() * (4 - 0) + 0);
+      this.request = data[index];
+      console.log(data);
+    },
+  }
 };
 </script>

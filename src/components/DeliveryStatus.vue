@@ -106,8 +106,8 @@ export default {
     }
 
     .check-point {
-      height: 25px;
-      width: 25px;
+      height: 22px;
+      width: 22px;
       background-color: #fff;
       border: 4px solid #d8d8d8;
       z-index: 10;
