@@ -1,6 +1,6 @@
 <template>
   <gmap-map
-    :center="center"
+    :center="getCenter"
     :zoom="13"
     map-type-id="terrain"
     style="width: 100%; height: 300px"
@@ -72,6 +72,19 @@ export default {
 
       return markersArr;
     },
+    getCenter() {
+      const {latitude, longitude} = this.address.geolocation;
+      if (this.driver) {
+        const {latitude: driLat, longitude: driLng} = this.driver.geolocation;
+
+        const lat = latitude > driLat ? ((latitude - driLat) + driLat) : ((driLat - latitude) + latitude);
+        const lng = longitude > driLng ? ((longitude - driLng) + driLng) : ((driLng - longitude) + longitude);
+
+        return {lat, lng};
+      }
+
+      return {lat: longitude, lng: latitude};
+    }
   },
 };
 </script>
