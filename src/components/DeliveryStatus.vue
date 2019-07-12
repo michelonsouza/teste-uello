@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <div class="app_uello__status-container">
+    <div class="app_uello__status-container pb-4">
       <div class="app_uello__status-container--progress-container">
         <div class="progress-bar">
           <div class="progress" :class="`stage-${stage}`"></div>
@@ -49,6 +49,9 @@ export default {
 </script>
 
 <style lang="scss">
+.app_uello__status-container {
+  border-bottom: 2px solid #d8d8d8;
+}
 .app_uello__status-container--progress-container {
   margin-top: 10px;
   position: relative;

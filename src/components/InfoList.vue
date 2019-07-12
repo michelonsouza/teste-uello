@@ -12,7 +12,7 @@
                <p class="text-muted font-weight-bold mb-0"><i>#1</i> Número do pedido</p>
                <ul>
                   <li>
-                    <h3 class="text-dark font-weight-bold">{{infos.invoice}}</h3>
+                    <h3 class="text-dark font-weight-bold">{{infos.id}}</h3>
                   </li>
                </ul>
             </li>
@@ -46,8 +46,8 @@
                <p class="text-muted font-weight-bold mb-0"><i>#1</i> De</p>
                <ul>
                   <li>
-                    <p class="text-dark font-weight-bold">Michelo Souza</p>
-                    <address class="text-dark font-weight-bold">Rua Paulo Augusto de Andrade, 158 - Taboão da Serra - SP</address>
+                    <p class="text-dark font-weight-bold">{{infos.name}}</p>
+                    <address class="text-dark font-weight-bold">{{infos.address.address}}</address>
                   </li>
                </ul>
             </li>
@@ -59,19 +59,19 @@
                <p class="text-muted font-weight-bold mb-0"><i>#1</i> Nota fiscal</p>
                <ul>
                   <li>
-                    <p class="text-dark font-weight-bold">1234567890</p>
+                    <p class="text-dark font-weight-bold">{{infos.invoice}}</p>
                   </li>
                </ul>
             </li>
           </ul>
         </b-col>
         <b-col cols="12" md="6" lg="4" class="d-flex flex-row flex-md-column">
-          <ul>
+          <ul v-if="infos.driver">
             <li>
                <p class="text-muted font-weight-bold mb-0"><i>#1</i> Motorista</p>
                <ul>
                   <li>
-                    <p class="text-dark font-weight-bold">Marcio Marlon da Silva (Moto)</p>
+                    <p class="text-dark font-weight-bold">{{infos.driver.name}}</p>
                     <p class="text-dark font-weight-bold">Previsão 15:00</p>
                   </li>
                </ul>
@@ -80,12 +80,22 @@
         </b-col>
       </b-row>
       <delivery-status :stage="stage" />
+      <b-row class="mt-3">
+        <b-col>
+          <p class="text-muted font-weight-bold pl-3">Mapa</p>
+          <map-history v-if="infos.name" :address="infos.address" :driver="infos.driver" />
+        </b-col>
+        <b-col></b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
 
 <script>
+import moment from 'moment';
+
 import DeliveryStatus from './DeliveryStatus.vue';
+import MapHistory from './MapHistory.vue';
 import TruckIcon from '../assets/img/truck-icon.svg';
 
 export default {
@@ -108,6 +118,7 @@ export default {
   components: {
     DeliveryStatus,
     TruckIcon,
+    MapHistory,
   },
   computed: {
     stage() {
@@ -120,12 +131,12 @@ export default {
 <style lang="scss">
   .app_uello__info-list {
   h3 {
-      color: #444;
+    color: #444;
 
-      &.info {
-        color: #02baef;
-      }
+    &.info {
+      color: #02baef;
     }
+  }
 
     ul {
       list-style: none;

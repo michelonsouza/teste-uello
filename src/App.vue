@@ -2,7 +2,7 @@
   <div id="app">
     <app-header :name="request.name"  />
     <b-container class="mt-5">
-      <info-list :infos="request" />
+      <info-list v-if="request.name" :infos="request" />
     </b-container>
   </div>
 </template>
