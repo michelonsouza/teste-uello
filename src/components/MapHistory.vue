@@ -3,7 +3,7 @@
     :center="center"
     :zoom="13"
     map-type-id="terrain"
-    style="width: 500px; height: 300px"
+    style="width: 100%; height: 300px"
   >
     <gmap-marker
       v-for="(marker, index) in markers"
@@ -54,7 +54,7 @@ export default {
       const { latitude: latadd, longitude: lngadd } = this.address.geolocation;
       if (this.driver) {
         const { latitude, longitude } = this.driver.geolocation;
-        const lat = latadd > latitude ? ((latdd - latidude) + latitude) : ((latitude - latadd) / 2 + latadd);
+        const lat = latadd > latitude ? ((latadd - latitude) + latitude) : ((latitude - latadd) / 2 + latadd);
         const lng = lngadd > latitude ? ((lngadd - longitude) + longitude) : ((longitude - lngadd) / 2 + lngadd);
 
         return { lat, lng };

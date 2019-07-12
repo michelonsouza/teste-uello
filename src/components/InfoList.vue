@@ -80,12 +80,23 @@
         </b-col>
       </b-row>
       <delivery-status :stage="stage" />
-      <b-row class="mt-3">
-        <b-col>
+      <b-row class="mt-3 px-3">
+        <b-col cols="12" md="6">
           <p class="text-muted font-weight-bold pl-3">Mapa</p>
           <map-history v-if="infos.name" :address="infos.address" :driver="infos.driver" />
         </b-col>
-        <b-col></b-col>
+        <b-col cols="12" md="6">
+          <b-row>
+            <b-col>
+              <p class="text-muted font-weight-bold">Data</p>
+              <p class="text-muted mb-1" v-for="(dateInfo, index) in history" :key="index">{{dateInfo.date}}</p>
+            </b-col>
+            <b-col>
+              <p class="text-muted font-weight-bold">Detalhes</p>
+              <p class="text-muted mb-1" v-for="(descInfo, index) in history" :key="index">{{descInfo.description}}</p>
+            </b-col>
+          </b-row>
+        </b-col>
       </b-row>
     </b-container>
   </div>
@@ -123,6 +134,12 @@ export default {
   computed: {
     stage() {
       return this.option[this.infos.status]
+    },
+    history() {
+      return this.infos.history.map(history => {
+        const date = moment(history.date).format('YYYY/MM/DD hh:mm');
+        return { ...history, date }
+      });
     }
   }
 };
