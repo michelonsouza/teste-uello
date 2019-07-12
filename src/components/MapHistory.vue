@@ -29,8 +29,27 @@ export default {
       required: true,
     },
   },
-  created() {
-    console.log(process.env.VUE_APP_GOOGLE_MAPS_KEY, this.markers);
+  data() {
+    return {
+      center: {}
+    }
+  },
+  beforeMount() {
+    this.getPosition();
+  },
+  methods: {
+    getPosition() {
+      if (navigator.geolocation) {
+        return navigator.geolocation.getCurrentPosition((position) => {
+          this.center = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          }
+        })
+      }
+
+      return null;
+    }
   },
   computed: {
     markers() {
@@ -46,22 +65,25 @@ export default {
       const { latitude: lat, longitude: lng } = this.address.geolocation;
       const clientmark = { icon: `${process.env.VUE_APP_HOST}/img/ic-pin.svg`, position: { lat, lng } };
 
+      const myPosition = { icon: `${process.env.VUE_APP_HOST}/img/marker.svg`, position: this.center };
+
       markersArr.push(clientmark);
+      markersArr.push(myPosition);
 
       return markersArr;
     },
-    center() {
-      const { latitude: latadd, longitude: lngadd } = this.address.geolocation;
-      if (this.driver) {
-        const { latitude, longitude } = this.driver.geolocation;
-        const lat = latadd > latitude ? ((latadd - latitude) + latitude) : ((latitude - latadd) / 2 + latadd);
-        const lng = lngadd > latitude ? ((lngadd - longitude) + longitude) : ((longitude - lngadd) / 2 + lngadd);
+    // center() {
+    //   const { latitude: latadd, longitude: lngadd } = this.address.geolocation;
+    //   if (this.driver) {
+    //     const { latitude, longitude } = this.driver.geolocation;
+    //     const lat = latadd > latitude ? ((latadd - latitude) + latitude) : ((latitude - latadd) / 2 + latadd);
+    //     const lng = lngadd > latitude ? ((lngadd - longitude) + longitude) : ((longitude - lngadd) / 2 + lngadd);
 
-        return { lat, lng };
-      } else {
-        return {lat: latadd, lng: lngadd};
-      }
-    }
+    //     return { lat, lng };
+    //   } else {
+    //     return {lat: latadd, lng: lngadd};
+    //   }
+    // }
   }
 }
 </script>

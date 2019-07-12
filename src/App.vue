@@ -37,3 +37,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.app_uello__marker-logo {
+  width: 28px;
+  height: 28px;
+}
+</style>
+

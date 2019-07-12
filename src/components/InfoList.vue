@@ -33,7 +33,7 @@
             <li>
               <p class="text-muted font-weight-bold mb-0"><i>#1</i> Data da coleta</p>
               <ul>
-                <li><p class="text-dark font-weight-bold mb-0 mt-2">20/02/2019 - 13:46</p></li>
+                <li><p class="text-dark font-weight-bold mb-0 mt-2">{{coleted}}</p></li>
               </ul>
             </li>
           </ul>
@@ -86,7 +86,7 @@
           <map-history v-if="infos.name" :address="infos.address" :driver="infos.driver" />
         </b-col>
         <b-col cols="12" md="6">
-          <b-row>
+          <b-row class="pt-3 pt-md-0">
             <b-col>
               <p class="text-muted font-weight-bold">Data</p>
               <p class="text-muted mb-1" v-for="(dateInfo, index) in history" :key="index">{{dateInfo.date}}</p>
@@ -140,6 +140,12 @@ export default {
         const date = moment(history.date).format('YYYY/MM/DD hh:mm');
         return { ...history, date }
       });
+    },
+    coleted() {
+      const { history } = this.infos;
+      const lastState = history[history.length - 1];
+
+      return lastState.description === 'Pedido coletado' ? moment(lastState.date).format('YYYY/MM/DD - hh:mm') : 'Informação não disponível';
     }
   }
 };
