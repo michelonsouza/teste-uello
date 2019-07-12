@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+    <g fill="none" fill-rule="nonzero" transform="rotate(45 18.885 18.278)">
+        <circle cx="17.932" cy="18.36" r="17.5" fill="#E63B4F" opacity=".3"/>
+        <circle cx="17.932" cy="17.653" r="14" fill="#E63B4F" opacity=".3"/>
+        <circle cx="17.932" cy="17.653" r="9" fill="#E63B4F" opacity=".519"/>
+        <g transform="translate(12.578 6.799)">
+            <rect width="8.071" height="16.879" x=".964" y="3.871" fill="#E63B4F" stroke="#C32638" stroke-width=".5" rx=".4"/>
+            <path fill="#757575" stroke="#4B4B4D" stroke-width=".5" d="M1.704 3.37h6.592L8 .386a.15.15 0 0 0-.15-.135H2.149a.15.15 0 0 0-.15.135l-.294 2.986z"/>
+            <path fill="#757575" stroke="#4B4B4D" stroke-width=".5" d="M2.376.974h5.248l-.012.064.245.048v-.25H2.143v.25l.245-.048-.012-.064z"/>
+            <path fill="#4B4B4D" d="M8.991 1.922l.139.349a.128.128 0 0 1-.202.145L8.193 1.8v-.463l.637.394a.4.4 0 0 1 .161.192zM1.02 1.922l-.139.349a.128.128 0 0 0 .202.145l.735-.617v-.463l-.637.394a.4.4 0 0 0-.161.192z"/>
+        </g>
+    </g>
+</svg>
