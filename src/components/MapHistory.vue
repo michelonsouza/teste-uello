@@ -73,18 +73,22 @@ export default {
       return markersArr;
     },
     getCenter() {
-      const {latitude, longitude} = this.address.geolocation;
+      const { latitude, longitude } = this.address.geolocation;
       if (this.driver) {
-        const {latitude: driLat, longitude: driLng} = this.driver.geolocation;
+        const { latitude: driLat, longitude: driLng } = this.driver.geolocation;
 
-        const lat = latitude > driLat ? ((latitude - driLat) / 2 + driLat) : ((driLat - latitude) / 2 + latitude);
-        const lng = longitude > driLng ? ((longitude - driLng) / 2 + driLng) : ((driLng - longitude) / 2 + longitude);
+        const lat = latitude > driLat
+          ? ((latitude - driLat) / 2 + driLat)
+          : ((driLat - latitude) / 2 + latitude);
+        const lng = longitude > driLng
+          ? ((longitude - driLng) / 2 + driLng)
+          : ((driLng - longitude) / 2 + longitude);
 
-        return {lat, lng};
+        return { lat, lng };
       }
 
-      return {lat: longitude, lng: latitude};
-    }
+      return { lat: longitude, lng: latitude };
+    },
   },
 };
 </script>
