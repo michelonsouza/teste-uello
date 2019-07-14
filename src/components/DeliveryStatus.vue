@@ -67,6 +67,12 @@ export default {
     margin-left: 4%;
     bottom: 35px;
 
+    @media screen and (max-width: 767px) {
+      bottom: 56px;
+      width: 87%;
+      margin-left: 5%;
+    }
+
     .progress {
       height: 100%;
       background-color: #e63b4f;
@@ -93,6 +99,10 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 80px;
+
+    @media screen and (max-width: 767px) {
+      height: 100px;
+    }
 
     .logo {
       height: 28px;
@@ -123,6 +133,13 @@ export default {
       font-size: 14px;
       color: #d8d8d8;
       margin: 5px 0 0;
+
+      @media screen and (max-width: 767px) {
+        font-size: 12px;
+        height: 42px;
+        word-wrap: break-word;
+        text-align: center !important;
+      }
     }
   }
 }
