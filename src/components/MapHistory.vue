@@ -4,6 +4,7 @@
     :zoom="13"
     map-type-id="terrain"
     style="width: 100%; height: 300px"
+    ref="map"
   >
     <gmap-marker
       v-for="(marker, index) in markers"
@@ -18,6 +19,8 @@
 </template>
 
 <script>
+import {gmapApi} from 'vue2-google-maps'
+
 export default {
   props: {
     driver: {
@@ -32,12 +35,40 @@ export default {
   data() {
     return {
       center: {},
+      directionsService: {},
+      directionsDisplay: {},
     };
   },
   beforeMount() {
     this.getPosition();
   },
+  mounted() {
+    setTimeout(() => {
+      this.getRoute();
+    }, 500);
+  },
   methods: {
+    getRoute() {
+      if (this.driver) {
+        this.directionsService = new google.maps.DirectionsService();
+        this.directionsDisplay = new google.maps.DirectionsRenderer();
+        this.directionsDisplay.setMap(this.$refs.map.$mapObject);
+        this.directionsDisplay.setOptions({ suppressMarkers: true });
+        var vm = this;
+
+        vm.directionsService.route({
+          origin: this.markers[1].position,
+          destination: this.markers[0].position,
+          travelMode: 'DRIVING'
+        }, (response, status) => {
+          if (status === 'OK') {
+            vm.directionsDisplay.setDirections(response)
+          } else {
+            console.log(`Directions request failed due to ${status}`)
+          }
+        })
+      }
+    },
     getPosition() {
       if (navigator.geolocation) {
         return navigator.geolocation.getCurrentPosition((position) => {
@@ -65,10 +96,7 @@ export default {
       const { latitude: lat, longitude: lng } = this.address.geolocation;
       const clientmark = { icon: `${process.env.VUE_APP_HOST}/img/ic-pin.svg`, position: { lat, lng } };
 
-      const myPosition = { icon: `${process.env.VUE_APP_HOST}/img/marker.svg`, position: this.center };
-
       markersArr.push(clientmark);
-      markersArr.push(myPosition);
 
       return markersArr;
     },
@@ -86,8 +114,8 @@ export default {
 
         return { lat, lng };
       }
-
-      return { lat: longitude, lng: latitude };
+      console.log(this.address.geolocation)
+      return { lat: latitude, lng: longitude };
     },
   },
 };

@@ -32,7 +32,6 @@ export default {
       const { data } = await axios.get('/api.json');
       const index = Math.floor(Math.random() * (4 - 0) + 0);
       this.request = data[index];
-      console.log(data);
     },
   },
 };
